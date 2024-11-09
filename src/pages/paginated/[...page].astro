@@ -1,0 +1,38 @@
+---
+import type { GetStaticPaths } from "astro";
+import { ProductList } from '@/components';
+import MainLayout from '@/layouts/MainLayout.astro';
+import { actions } from "astro:actions";
+
+export const prerender = true;
+
+export const getStaticPaths = (async ({paginate}) => {
+    const { data, error } = await actions.getAllProducts();
+    const products = data?.products ?? [];
+    return paginate(products, { pageSize: 12})
+}) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
+
+---
+
+<MainLayout>
+  <h1 class="text-3xl">Listado de productos paginados con astro</h1>
+  <ProductList client:load products={page.data} />
+  <section class="flex gap-5 my-20 justify-between">
+    <a class:list={["btn",!page.url.prev && "disabled"]} href={page.url.prev}>Anteriores</a>
+    <span class="text-xl font-bold">Pagina actual: {page.currentPage} </span>
+    <a class:list={["btn",!page.url.next && "disabled"]} href={page.url.next}>Proximos</a>
+</section>
+</MainLayout>
+
+<style>
+	.btn {
+		@apply bg-blue-500 text-white p-2 rounded-md;
+	}
+
+	.disabled {
+		@apply bg-gray-300 text-gray-500 p-2 rounded-md cursor-not-allowed;
+	}
+
+</style>
