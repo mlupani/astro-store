@@ -2,6 +2,7 @@ import { loginUser, logout, registerUser } from './auth';
 import { getAllProducts } from './products/get-all-products';
 import { getProductBySlug } from './products/get-product-by-slug';
 import { getProductsByPage } from './products/get-products-by-page.action';
+import { getProductsFromCart } from './products/get-products-from-cart';
 
 export const server = {
   // actions
@@ -12,5 +13,6 @@ export const server = {
   registerUser,
   getProductsByPage,
   getProductBySlug,
-  getAllProducts
+  getAllProducts,
+  getProductsFromCart
 };
