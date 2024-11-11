@@ -1,0 +1,17 @@
+---
+
+interface Props {
+    src: string;
+    alt: string;
+    className: string;
+}
+
+const { alt, src, className } = Astro.props
+
+const imageSrc = src.startsWith('http') ? src : `http://localhost:4321/images/products/${src}`
+
+
+---
+
+
+<img src={imageSrc} alt={alt} class:list={[className]}>

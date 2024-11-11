@@ -13,7 +13,7 @@ const { images } = Astro.props
     <!-- Slides -->
     {
       images.map((image, index) => (
-        <div class="swiper-slide">
+        <div id={image} class="swiper-slide">
           <img src={image.startsWith('http') ? image : `http://localhost:4321/images/products/${image}`} alt="Product image" class="w-full h-full object-cover"/>
         </div>
       ))

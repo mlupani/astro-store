@@ -7,7 +7,7 @@ interface Props {
 
 export const ProductCard = ({product}: Props) => {
 
-    const images = product.images.split(',').map(img => {
+    const images = product.images?.split(',').map(img => {
         if(img.startsWith('http')) {
             return img;
         } else {
@@ -15,7 +15,7 @@ export const ProductCard = ({product}: Props) => {
         }
     })
 
-    const [currentImage, setCurrentImage] = useState(images[0]);
+    const [currentImage, setCurrentImage] = useState(images ? images[0] : '');
 
   return (
     <a href={`products/${product.slug}`} onMouseLeave={() => setCurrentImage(images[0])} onMouseEnter={() => setCurrentImage(images[1] ?? images[0])}  >

@@ -9,7 +9,7 @@ interface Props {
   image?: string;
 }
 
-const { title = 'Astro Store' } = Astro.props;
+const { title = 'Astro Store', description = 'Mi tienda', image = 'https://res-console.cloudinary.com/duz1soadb/media_explorer_thumbnails/ae5a15f845ab20050ffc00ea727b2303/detailed' } = Astro.props;
 ---
 
 <html lang="es">
@@ -19,6 +19,22 @@ const { title = 'Astro Store' } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:title" content={title} />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content={image} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={Astro.url} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={image} />
   </head>
   <body>
     <Navbar />
