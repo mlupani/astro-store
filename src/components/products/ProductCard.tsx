@@ -11,7 +11,7 @@ export const ProductCard = ({product}: Props) => {
         if(img.startsWith('http')) {
             return img;
         } else {
-            return `http://localhost:4321/images/products/${img}`;
+            return `${import.meta.env.SITE_URL}/images/products/${img}`;
         }
     })
 

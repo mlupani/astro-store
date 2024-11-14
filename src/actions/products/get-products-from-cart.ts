@@ -23,7 +23,7 @@ export const getProductsFromCart = defineAction({
             if(!dbProduct){
                 throw new Error("Product not found in cart");
             }
-            const image = dbProduct.ProductImage.image.startsWith("http") ? dbProduct.ProductImage.image : `http://localhost:4321/images/products/${dbProduct.ProductImage.image}`;
+            const image = dbProduct.ProductImage.image.startsWith("http") ? dbProduct.ProductImage.image : `${import.meta.env.SITE_URL}/images/products/${dbProduct.ProductImage.image}`;
             const { slug, title, price } = dbProduct.Product;
             return {
                 slug,

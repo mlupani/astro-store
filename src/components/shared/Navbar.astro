@@ -47,7 +47,8 @@ const { isLoggedIn, isAdmin } = Astro.locals;
 
   const logoutElem = document.querySelector('#logout') as HTMLLIElement;
 
-  logoutElem?.addEventListener('click', async () => {
+  logoutElem?.addEventListener('click', async (e) => {
+    e.preventDefault();
     await signOut();
     window.location.href = '/';
   });

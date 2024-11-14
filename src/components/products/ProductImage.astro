@@ -8,7 +8,7 @@ interface Props {
 
 const { alt, src, className } = Astro.props
 
-const imageSrc = src.startsWith('http') ? src : `http://localhost:4321/images/products/${src}`
+const imageSrc = src.startsWith('http') ? src : `${import.meta.env.SITE_URL}/images/products/${src}`
 
 
 ---
