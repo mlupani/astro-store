@@ -11,17 +11,17 @@ export const ProductCard = ({product}: Props) => {
         if(img.startsWith('http')) {
             return img;
         } else {
-            return `${import.meta.env.SITE_URL}/images/products/${img}`;
+            return `/images/products/${img}`;
         }
     })
 
-    const [currentImage, setCurrentImage] = useState(images ? images[0] : '');
+    const [currentImage, setCurrentImage] = useState(images[0]);
 
-  return (
-    <a href={`products/${product.slug}`} onMouseLeave={() => setCurrentImage(images[0])} onMouseEnter={() => setCurrentImage(images[1] ?? images[0])}  >
-        <img className="object-contain h-[350px]" src={currentImage} alt={`${product.title}`} />
-        <h4>{product.title}</h4>
-        <p>${product.price}</p>
-    </a>
-  )
+    return (
+        <a href={`products/${product.slug}`} onMouseLeave={() => setCurrentImage(images[0])} onMouseEnter={() => setCurrentImage(images[1] ?? images[0])}>
+            <img className="object-contain h-[350px]" src={currentImage} alt={`${product.title}`} />
+            <h4>{product.title}</h4>
+            <p>${product.price}</p>
+        </a>
+    )
 }
